@@ -1,16 +1,9 @@
-FROM node
+FROM centos:7
 
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get clean
+RUN yum update -y
 
-RUN mkdir /app
-WORKDIR /app
+RUN yum install -y httpd httpd-tools
 
-COPY package.json /app/
-RUN npm install --only=production
+EXPOSE  80
 
-COPY src /app/src
-
-EXPOSE 3000
-
-CMD [ "npm", "start" ]
+CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
