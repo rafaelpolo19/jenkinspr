@@ -1,4 +1,4 @@
-# Ejecucion en docker.
+# Ejecución en docker.
   
   Arrancar el contenedor con: 
   
