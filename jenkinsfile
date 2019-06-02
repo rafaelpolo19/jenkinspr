@@ -1,21 +1,37 @@
 pipeline {
+    
+    environment {
+    registryCredential = 'gitazure2'
+    
+    }
     agent any
 
     stages {
-        stage('Clone') {
+        stage('Git') {
             steps {
-                echo 'Clonning repository'
-                git branch: 'master', url: 'https://github.com/404Solution/azuretest.git'
+                script{
+                    git "https://github.com/rafaelpolo19/jenkinspr.git"
+                }    
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                script{
+                    powershell "C:/Users/jackson.hernandez/scriptjenkins/jenkins.sh"
+                    powershell "git remote rm origin"
+                    powershell "git remote add origen https://periferiaitgrouptfs.visualstudio.com/DEMO_FABRICA_TD_DEVOPS/_git/jenkinspr"
+                    powershell "git remote -v"
+             
+                    
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+
+                powershell 'git push https://GitJenkins:o64liv5qsxj7vtxhmfkqoq5wm3mmtab7oxhb2qf66c7pskh3ggha@periferiaitgrouptfs.visualstudio.com/DEMO_FABRICA_TD_DEVOPS/_git/jenkinspr --all'                    
+                powershell "powershell -Command Remove-Item 'C:/Users/jackson.hernandez/.jenkins/workspace/jenkinspr/*' -Recurse -Force"
+        
             }
         }
     }
