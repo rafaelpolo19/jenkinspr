@@ -30,7 +30,7 @@ pipeline {
             steps {
 
                 powershell 'git push https://GitJenkins:o64liv5qsxj7vtxhmfkqoq5wm3mmtab7oxhb2qf66c7pskh3ggha@periferiaitgrouptfs.visualstudio.com/DEMO_FABRICA_TD_DEVOPS/_git/jenkinspr --all'                    
-                powershell "powershell -Command Remove-Item 'C:/Users/jackson.hernandez/.jenkins/workspace/jenkinspr/*' -Recurse -Force"
+                //dpowershell "powershell -Command Remove-Item 'C:/Users/jackson.hernandez/.jenkins/workspace/jenkinspr/*' -Recurse -Force"
         
             }
         }
